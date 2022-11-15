@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import {auth } from "../firebase"
-import {signInWithEmailAndPassword , signOut} from "firebase/auth"
+import {signInWithEmailAndPassword , signOut ,onAuthStateChanged} from "firebase/auth"
 import { async } from '@firebase/util'
+import { useEffect } from 'react'
 
 function Login() {
 
@@ -10,6 +11,7 @@ let [password,setPassword] = useState("")
 let [loader,setLoader] = useState(false)
 let [error,setError] =useState("")
 let [user,setUser] = useState(null)
+let [mainLoader, setMainLoader] = useState(true)
 
 const trackEmail = function(e) {
   setEmail(e.target.value);
@@ -41,9 +43,27 @@ const signout = async function (){
   setUser(null)
 }
 
+useEffect(()=>{
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      setUser(user)
+      // ...
+    } else {
+      // User is signed out
+      // ...
+      setUser(null)
+    }
+    setMainLoader(false)
+  });
+
+},[])
+
   return (
    <>
    {
+    mainLoader==true?<h1>PAGE LOADING....</h1>:
     error!="" ? <h1>Error is {error}</h1> :
     loader ==true ? <h1>......Loading</h1>:
     user!=null ? 
