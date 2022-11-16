@@ -1,0 +1,49 @@
+/* body {
+    background-color: cornflowerblue;
+} */
+body{
+    margin: 0px;
+    font-family: sans-serif;
+}
+.header{
+    height: 5rem;
+    border-bottom: 2px solid gray;
+}
+.pimg{
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+}
+.main{
+    /* border: 1px solid red; */
+    display: flex;
+    height: calc(100vh - 10rem); /*isse iske andar wali cheezo ko cal wali height milli*/
+    align-items : center;
+    justify-content: space-evenly;
+}
+
+.main>*{
+    height: 80%;
+    width: 40%;
+}
+
+.details{
+    margin-top: 6rem;
+    text-align: center;
+}
+
+.content{
+    line-height: 1.5;
+    font-size: 1.5rem;
+    color: gray;
+}
+
+.pimg_container{
+    display: flex;
+    align-items: center;
+}
+
+.bold_text{
+    font-weight: bold;
+    color:black;
+}

@@ -1,6 +1,7 @@
 import React , {useState}from 'react'
-import {auth } from "../firebase"
+import {auth , db} from "../firebase"
 import {createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
 
 function Signup() {
 
@@ -16,7 +17,21 @@ function Signup() {
       setLoader(true)
       let userCred = await createUserWithEmailAndPassword(auth,email, password)
       //console.log(userCred.user)
+      
+
+      //firestore ke andar user creation
+      const docRef = await addDoc(collection(db, "users"), {
+        email,
+        name,
+        reelsIds:[],
+        profileImageUrl:"",
+        userId: userCred.user.uid
+      });
+      
+
+      
       setUser(userCred.user)
+
       } catch(err){
         setError(err.message)
         // After some time - > error messaage remove
