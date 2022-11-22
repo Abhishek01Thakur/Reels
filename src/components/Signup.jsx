@@ -32,7 +32,7 @@ function Signup() {
       
       setUser(userCred.user)
 
-      } catch(err){
+    } catch(err){
         setError(err.message)
         // After some time - > error messaage remove
         setTimeout(()=>{

@@ -8,10 +8,11 @@ function Login() {
 
 let [email,setEmail] = useState("")
 let [password,setPassword] = useState("")
+
 let [loader,setLoader] = useState(false)
 let [error,setError] =useState("")
 let [user,setUser] = useState(null)
-let [mainLoader, setMainLoader] = useState(true)
+
 
 const trackEmail = function(e) {
   setEmail(e.target.value);
@@ -39,8 +40,8 @@ const printDetails = async function() {   // using async for promises
 }
 
 const signout = async function (){
-  await signOut(auth)
-  setUser(null)
+  await signOut(auth);
+  setUser(null);
 }
 
 useEffect(()=>{
@@ -55,15 +56,14 @@ useEffect(()=>{
       // ...
       setUser(null)
     }
-    setMainLoader(false)
+    
   });
 
-},[])
+},[]);
 
   return (
    <>
    {
-    mainLoader==true?<h1>PAGE LOADING....</h1>:
     error!="" ? <h1>Error is {error}</h1> :
     loader ==true ? <h1>......Loading</h1>:
     user!=null ? 
